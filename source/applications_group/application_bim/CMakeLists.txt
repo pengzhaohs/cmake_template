@@ -12,7 +12,7 @@
 #	ZS_APPLICATION_NAME : [required] library name
 #
 #	ZS_APPLICATION_INCLUDE : [option] visiable header files
-#   ZS_APPLICATION_INC : [option] invisiable header files
+#   	ZS_APPLICATION_INC : [option] invisiable header files
 #	ZS_APPLICATION_SRC : [option] source files
 #	ZS_APPLICATION_FOLDER : [option] value should be "" or "folder1" or "folder1/folder2"
 #
@@ -59,6 +59,10 @@ ELSEIF(ZS_WINDOWS_BUILD_64)
 ELSEIF(ZS_MAC_BUILD_XX)
 	SET(__ZS_PLATFORM_CPPS
 		src/app_bim_classimp_mac.cpp
+	)
+ELSEIF(ZS_UNIX_BUILD_XX)
+	SET(__ZS_PLATFORM_CPPS
+		src/app_bim_classimp_unix.cpp
 	)
 ELSE()
 	MESSAGE("zsoft not support build")
@@ -110,6 +114,19 @@ ELSEIF(ZS_MAC)
 	SET(__ZS_PLATFORM_LINK_FLAGS_ALPHA
 	)
 	
+ELSEIF(ZS_UNIX)
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS
+	)
+	
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS_ALPHA
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS_ALPHA
+	)
+
 ELSE()
 	MESSAGE(FATAL_ERROR "zsoft not support platform")
 ENDIF()

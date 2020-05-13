@@ -13,7 +13,7 @@
 #	ZS_LIBRARY_NAME : [required] library name
 #
 #	ZS_LIBRARY_INCLUDE : [option] visiable header files
-#   ZS_LIBRARY_INC : [option] invisiable header files
+#   	ZS_LIBRARY_INC : [option] invisiable header files
 #	ZS_LIBRARY_SRC : [option] source files
 #	ZS_LIBRARY_FOLDER : [option] value should be "" or "folder1" or "folder1/folder2"
 #
@@ -83,6 +83,19 @@ IF(ZS_WINDOWS)
 	)
 	
 ELSEIF(ZS_MAC)
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS
+	)
+	
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS_ALPHA
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS_ALPHA
+	)
+	
+ELSEIF(ZS_UNIX)
 	SET(__ZS_PLATFORM_COMPILE_OPTIONS
 	)
 	
