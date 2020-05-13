@@ -1,0 +1,37 @@
+#######################################################################################
+#
+#	Copy Right : ZSoft R&D
+#
+#######################################################################################
+
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)
+
+PROJECT(ZSoft_Solution)
+
+SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}")
+
+SET(ZS_ROOT_DIR ${CMAKE_SOURCE_DIR})
+SET(ZS_SOURCE_DIR ${ZS_ROOT_DIR}/source)
+SET(ZS_SDK_INCLUDE_DIR ${ZS_SOURCE_DIR}/include)
+SET(ZS_THIRDPARTY_DIR ${ZS_ROOT_DIR}/thirdparty)
+
+MESSAGE("ZS_ROOT_DIR=${ZS_ROOT_DIR}")
+MESSAGE("ZS_SOURCE_DIR=${ZS_SOURCE_DIR}")
+MESSAGE("ZS_SDK_INCLUDE_DIR=${ZS_SDK_INCLUDE_DIR}")
+MESSAGE("ZS_THIRDPARTY_DIR=${ZS_THIRDPARTY_DIR}")
+
+INCLUDE(ZSoftPlatformDetermine)
+INCLUDE(ZSoftMacroUtils)
+INCLUDE(ZSoftGlobalSetting)
+INCLUDE(ZSoftApplySetting)
+
+IF(ZS_WINDOWS)
+	ADD_DEFINITIONS(-DZS_PLATFORM_WINDOWS)
+ENDIF(ZS_WINDOWS)
+
+IF(ZS_MAC)
+	ADD_DEFINITIONS(-DZS_PLATFORM_MAC)
+ENDIF(ZS_MAC)
+
+ADD_SUBDIRECTORY(source)

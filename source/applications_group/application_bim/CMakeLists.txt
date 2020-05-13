@@ -1,0 +1,155 @@
+#######################################################################################
+#
+#	Copy Right : ZSoft R&D
+#
+#######################################################################################
+
+#######################################################################################
+#	[option] : you can ignore the definition
+#	[required]	 : you should always explict give a definition
+#
+#	SET list:	
+#	ZS_APPLICATION_NAME : [required] library name
+#
+#	ZS_APPLICATION_INCLUDE : [option] visiable header files
+#   ZS_APPLICATION_INC : [option] invisiable header files
+#	ZS_APPLICATION_SRC : [option] source files
+#	ZS_APPLICATION_FOLDER : [option] value should be "" or "folder1" or "folder1/folder2"
+#
+#	ZS_APPLICATION_GENERAL_DEFINITIONS : [option]
+#	ZS_APPLICATION_DEFINITIONS_<CONFIG> : [option]
+#
+#	ZS_APPLICATION_GENERAL_COMPILE_OPTIONS : [option]
+#	ZS_APPLICATION_COMPILE_OPTIONS_<CONFIG> : [option]
+#
+#	ZS_APPLICATION_GENERAL_LINK_FLAGS : [option]
+#	ZS_APPLICATION_LINK_FLAGLS_<CONFIG> : [option]
+#
+#	ZS_APPLICATION_INCLUDE_DIRECTORIES : [option]
+#	ZS_APPLICATION_LINK_LIBRARIES : [option]
+#
+#######################################################################################
+
+SET(ZS_APPLICATION_NAME application_bim)
+
+FIND_PACKAGE(base_module1)
+FIND_PACKAGE(base_module2)
+FIND_PACKAGE(graphics_module1)
+FIND_PACKAGE(graphics_module2)
+FIND_PACKAGE(gui_module1)
+FIND_PACKAGE(gui_module2)
+
+SET(ZS_APPLICATION_INCLUDE 
+	${ZS_APPLICATIONS_INCLUDE_DIR}/app_bim_dummy1.h
+	${ZS_APPLICATIONS_INCLUDE_DIR}/app_bim_dummy2.h
+)
+
+SET(ZS_APPLICATION_INC 
+	inc/app_bim_dummy_p.h
+)
+
+IF(ZS_WINDOWS_BUILD_32)
+	SET(__ZS_PLATFORM_CPPS
+		src/app_bim_classimp_win32.cpp
+	)
+ELSEIF(ZS_WINDOWS_BUILD_64)
+	SET(__ZS_PLATFORM_CPPS
+		src/app_bim_classimp_win64.cpp
+	)
+ELSEIF(ZS_MAC_BUILD_XX)
+	SET(__ZS_PLATFORM_CPPS
+		src/app_bim_classimp_mac.cpp
+	)
+ELSE()
+	MESSAGE("zsoft not support build")
+ENDIF()
+
+
+SET(ZS_APPLICATION_SRC
+	${__ZS_PLATFORM_CPPS}
+	src/app_bim_dummy1.cpp
+	src/app_bim_dummy2.cpp
+	src/main.cpp
+)
+
+SET(ZS_APPLICATION_FOLDER "applications")
+
+SET(ZS_APPLICATION_GENERAL_DEFINITIONS "COMMON_D;COMMON_D2;COMMON_D3;STATIC_GRAPHICS_MODULE2_EXPORTS")
+SET(ZS_APPLICATION_DEFINITIONS_DEBUG "DEBUG_D1;DEBUG_D2")
+SET(ZS_APPLICATION_DEFINITIONS_RELEASE "RELEASE_D1;RELEASE_D2;RELEASE_D3")
+SET(ZS_APPLICATION_DEFINITIONS_MINSIZEREL "MINSIZEREL_D1;MINSIZEREL_D2;MINSIZEREL_D3;MINSIZEREL_D4")
+SET(ZS_APPLICATION_DEFINITIONS_RELWITHDEBINFO "RELWITHDEBINFO_D1;RELWITHDEBINFO_D2;RELWITHDEBINFO_D3;RELWITHDEBINFO_D4;RELWITHDEBINFO_D5")
+
+IF(ZS_WINDOWS)
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS
+		/std:c++14
+	)
+	
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS_ALPHA
+		/openmp
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS
+		/PROFILE
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS_ALPHA
+		/INCREMENTAL:NO
+	)
+	
+ELSEIF(ZS_MAC)
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS
+	)
+	
+	SET(__ZS_PLATFORM_COMPILE_OPTIONS_ALPHA
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS
+	)
+	
+	SET(__ZS_PLATFORM_LINK_FLAGS_ALPHA
+	)
+	
+ELSE()
+	MESSAGE(FATAL_ERROR "zsoft not support platform")
+ENDIF()
+
+SET(ZS_APPLICATION_GENERAL_COMPILE_OPTIONS
+	${__ZS_PLATFORM_COMPILE_OPTIONS}
+)
+
+SET(ZS_APPLICATION_COMPILE_OPTIONS_ALPHA 
+	${__ZS_PLATFORM_COMPILE_OPTIONS_ALPHA}
+)
+
+
+SET(ZS_APPLICATION_GENERAL_LINK_FLAGS
+	${__ZS_PLATFORM_LINK_FLAGS}
+)
+
+SET(ZS_APPLICATION_LINK_FLAGS_ALPHA
+	${__ZS_PLATFORM_LINK_FLAGS_ALPHA}
+)
+
+SET(ZS_APPLICATION_INCLUDE_DIRECTORIES
+	${ZS_APPLICATIONS_INCLUDE_DIR}
+	inc
+	${ZS_BASE_MODULE1_INCLUDE_DIR}
+	${ZS_BASE_MODULE2_INCLUDE_DIR}
+	${ZS_GRAPHICS_MODULE1_INCLUDE_DIR}
+	${ZS_GRAPHICS_MODULE2_INCLUDE_DIR}
+	${ZS_GUI_MODULE1_INCLUDE_DIR}
+	${ZS_GUI_MODULE2_INCLUDE_DIR}
+)
+
+SET(ZS_APPLICATION_LINK_LIBRARIES
+	base_module1
+	base_module2
+	graphics_module1
+	graphics_module2
+	gui_module1
+	gui_module2
+)
+
+
+ZS_SETUP_APPLICATION()
