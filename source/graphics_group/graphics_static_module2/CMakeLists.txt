@@ -15,6 +15,11 @@
 #	ZS_LIBRARY_INCLUDE : [option] visiable header files
 #   ZS_LIBRARY_INC : [option] invisiable header files
 #	ZS_LIBRARY_SRC : [option] source files
+#
+#	ZS_LIBRARY_MOC_SRCS : [option]
+#	ZS_LIBRARY_UI_FORMS : [option]
+#	ZS_LIBRARY_RESOURCES : [option]
+#
 #	ZS_LIBRARY_FOLDER : [option] value should be "" or "folder1" or "folder1/folder2"
 #
 #	ZS_LIBRARY_GENERAL_DEFINITIONS : [option]
@@ -28,6 +33,8 @@
 #
 #	ZS_LIBRARY_INCLUDE_DIRECTORIES : [option]
 #	ZS_LIBRARY_LINK_LIBRARIES : [option]
+#
+#	ZS_LIBRARY_USE_QT_MODULES : [option]
 #
 #######################################################################################
 

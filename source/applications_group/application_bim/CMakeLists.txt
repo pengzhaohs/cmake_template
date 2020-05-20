@@ -12,8 +12,13 @@
 #	ZS_APPLICATION_NAME : [required] library name
 #
 #	ZS_APPLICATION_INCLUDE : [option] visiable header files
-#   	ZS_APPLICATION_INC : [option] invisiable header files
+#   ZS_APPLICATION_INC : [option] invisiable header files
 #	ZS_APPLICATION_SRC : [option] source files
+#
+#	ZS_APPLICATION_MOC_SRCS : [option]
+#	ZS_APPLICATION_UI_FORMS : [option]
+#	ZS_APPLICATION_RESOURCES : [option]
+#
 #	ZS_APPLICATION_FOLDER : [option] value should be "" or "folder1" or "folder1/folder2"
 #
 #	ZS_APPLICATION_GENERAL_DEFINITIONS : [option]
@@ -27,6 +32,8 @@
 #
 #	ZS_APPLICATION_INCLUDE_DIRECTORIES : [option]
 #	ZS_APPLICATION_LINK_LIBRARIES : [option]
+#
+#	ZS_APPLICATION_USE_QT_MODULES : [option]
 #
 #######################################################################################
 
@@ -74,6 +81,15 @@ SET(ZS_APPLICATION_SRC
 	src/app_bim_dummy1.cpp
 	src/app_bim_dummy2.cpp
 	src/main.cpp
+)
+
+SET(ZS_APPLICATION_MOC_SRCS
+)
+
+SET(ZS_APPLICATION_UI_FORMS
+)
+
+SET(ZS_APPLICATION_RESOURCES
 )
 
 SET(ZS_APPLICATION_FOLDER "applications")
@@ -166,6 +182,9 @@ SET(ZS_APPLICATION_LINK_LIBRARIES
 	graphics_module2
 	gui_module1
 	gui_module2
+)
+
+SET(ZS_APPLICATION_USE_QT_MODULES
 )
 
 
