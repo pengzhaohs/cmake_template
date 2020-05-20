@@ -38,3 +38,4 @@ cd DummyFolder
 mkdir build_release
 cd build_release
 cmake ../cmake_template -DCMAKE_BUILD_TYPE=Release -DZS_QT_ROOT="......"
+make
